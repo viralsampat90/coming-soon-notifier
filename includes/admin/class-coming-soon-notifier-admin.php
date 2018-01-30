@@ -37,6 +37,8 @@ class Coming_Soon_Notifier_Admin {
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 		wp_register_style( COMING_SOON_NOTIFIER_SLUG, COMING_SOON_NOTIFIER_URL . 'assets/css/coming-soon-notifier-admin' . $suffix . '.css', array('wp-color-picker'), COMING_SOON_NOTIFIER_VERSION, 'all' );
+		wp_register_style( COMING_SOON_NOTIFIER_SLUG.'-select2', COMING_SOON_NOTIFIER_URL . 'assets/css/select2.min.css', array(), COMING_SOON_NOTIFIER_VERSION, 'all' );
+		wp_enqueue_style( COMING_SOON_NOTIFIER_SLUG.'-select2' );
 		wp_enqueue_style( COMING_SOON_NOTIFIER_SLUG );
 	}
 
@@ -51,10 +53,16 @@ class Coming_Soon_Notifier_Admin {
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 		wp_register_script( 'coming-soon-notifier-common', COMING_SOON_NOTIFIER_URL . 'assets/js/coming-soon-notifier-common' . $suffix . '.js', array( 'jquery' ), COMING_SOON_NOTIFIER_VERSION, false );
-		wp_enqueue_script( 'coming-soon-notifier-common' );
-
 		wp_register_script( COMING_SOON_NOTIFIER_SLUG, COMING_SOON_NOTIFIER_URL . 'assets/js/coming-soon-notifier-admin' . $suffix . '.js', array( 'jquery','wp-color-picker' ), COMING_SOON_NOTIFIER_VERSION, false );
+		wp_register_script( COMING_SOON_NOTIFIER_SLUG."-select2", COMING_SOON_NOTIFIER_URL . 'assets/js/select2.min.js', array( 'jquery' ), COMING_SOON_NOTIFIER_VERSION, false );
+
+		wp_enqueue_script( COMING_SOON_NOTIFIER_SLUG.'-select2' );
+		wp_enqueue_script( 'coming-soon-notifier-common' );
 		wp_enqueue_script( COMING_SOON_NOTIFIER_SLUG );
+
+		wp_enqueue_script('media-upload');
+		wp_enqueue_script('thickbox');
+		wp_enqueue_style('thickbox');
 	}
 
 	/**
