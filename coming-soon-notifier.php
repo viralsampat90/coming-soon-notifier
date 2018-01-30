@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
  * The code that runs during plugin activation.
  * This action is documented in includes/class-idea-point-activator.php
  */
-function activate_idea_point() {
+function activate_coming_soon_notifier() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/coming-soon-notifier-activator.php';
 	Coming_Soon_Notifier_Activator::activate();
 }
@@ -30,13 +30,13 @@ function activate_idea_point() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-idea-point-deactivator.php
  */
-function deactivate_idea_point() {
+function deactivate_coming_soon_notifier() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/coming-soon-notifier-deactivator.php';
 	Coming_Soon_Notifier_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_idea_point' );
-register_deactivation_hook( __FILE__, 'deactivate_idea_point' );
+register_activation_hook( __FILE__, 'activate_coming_soon_notifier' );
+register_deactivation_hook( __FILE__, 'deactivate_coming_soon_notifier' );
 
 /**
  * check Coming_Soon_Notifier class exists or not.
