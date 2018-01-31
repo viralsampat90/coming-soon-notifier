@@ -40,7 +40,7 @@ register_deactivation_hook( __FILE__, 'deactivate_coming_soon_notifier' );
 
 /**
  * check Coming_Soon_Notifier class exists or not.
- */
+ */ 
 if( ! class_exists( 'Coming_Soon_Notifier' ) ) {
 
 	final class Coming_Soon_Notifier {
