@@ -1,0 +1,8 @@
+.coming-soon-wrap input[type=text],.coming-soon-wrap select,.coming-soon-wrap textarea {width: 74%; padding: 8px 10px;border-radius: 5px;border: 1px solid #aaa;}
+.coming-soon-wrap input[type=text].disabled-default{display: none;}
+.coming-soon-wrap input.csn_btn_default {padding: 7px 10px;border: 1px solid #23282d;background-color: #23282d;color: #FFF;text-transform: capitalize;text-align: center;cursor: pointer;border-radius: 3px;}
+.coming-soon-wrap input.csn_btn_default:hover {background: #43494e;}
+.coming-soon-contents {padding: 10px 20px;background: #FFF;border-radius: 10px;box-shadow: 0 0 24px #000000;margin-top: 30px;}
+.coming-soon-wrap .cs-notifier-preview_section{display: none;}
+.coming-soon-wrap .cs-notifier-setting-section {width: 49%;display: inline-block;border-right: 1px solid #CCC;vertical-align: top;}
+.coming-soon-wrap .cs-notifier-preview_section {width: 50%;display: none;}
