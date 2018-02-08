@@ -27,6 +27,7 @@ class Coming_Soon_Notifier_Admin {
 		add_action( 'admin_post_coming_soon_setting_form_settings',array( $this, 'coming_soon_setting_form_settings_callback' ));
 		add_action( 'admin_post_nopriv_coming_soon_setting_form_settings',array( $this, 'coming_soon_setting_form_settings_callback' ));
 		add_action( 'add_meta_boxes', 'coming_soon_notifier_register_meta_boxes' );
+		add_action( 'wp_ajax_csn_preview_action', 'csn_preview_action' );
 	}
 
 	/**
@@ -63,7 +64,6 @@ class Coming_Soon_Notifier_Admin {
 		wp_register_script( COMING_SOON_NOTIFIER_SLUG, COMING_SOON_NOTIFIER_URL . 'assets/js/coming-soon-notifier-admin' . $suffix . '.js', array( 'jquery','jquery-ui-core','wp-color-picker','jquery-ui-datepicker' ), COMING_SOON_NOTIFIER_VERSION, false );
 		wp_register_script( COMING_SOON_NOTIFIER_SLUG."-select2", COMING_SOON_NOTIFIER_URL . 'assets/js/select2.min.js', array( 'jquery' ), COMING_SOON_NOTIFIER_VERSION, false );
 
-		wp_enqueue_script('media-upload');
 		wp_enqueue_script('thickbox');
 		wp_enqueue_script( COMING_SOON_NOTIFIER_SLUG.'-select2' );
 		wp_enqueue_script( 'coming-soon-notifier-common' );
@@ -227,4 +227,54 @@ function get_csn_options( $get_option ) {
 			echo "no option founds";
 	}
 	return $selected_options;
+}
+
+function csn_preview_action() {
+
+	$get_csn_title = isset( $_POST['get_csn_title'] ) ? $_POST['get_csn_title'] : "";
+	$get_csn_discription = isset( $_POST['get_csn_discription'] ) ? $_POST['get_csn_discription'] : "";
+	$get_csn_logo_image = isset( $_POST['get_csn_logo_image'] ) ? $_POST['get_csn_logo_image'] : "";
+	$get_csn_bg_option = isset( $_POST['get_csn_bg_option'] ) ? $_POST['get_csn_bg_option'] : "";
+	$get_csn_bg_color = isset( $_POST['get_csn_bg_color'] ) ? $_POST['get_csn_bg_color'] : "";
+	$get_csn_bg_image = isset( $_POST['get_csn_bg_image'] ) ? $_POST['get_csn_bg_image'] : "";
+	$get_csn_clock_option = isset( $_POST['get_csn_clock_option'] ) ? $_POST['get_csn_clock_option'] : "";
+	$get_csn_clock_date = isset( $_POST['get_csn_clock_date'] ) ? $_POST['get_csn_clock_date'] : "";
+	$get_csn_clock_theme = isset( $_POST['get_csn_clock_theme'] ) ? $_POST['get_csn_clock_theme'] : "";
+	$get_csn_notification_option = isset( $_POST['get_csn_notification_option'] ) ? $_POST['get_csn_notification_option'] : "";
+	$get_csn_notification_btn_title = isset( $_POST['get_csn_notification_btn_title'] ) ? $_POST['get_csn_notification_btn_title'] : "";
+	$get_csn_notification_bg_color = isset( $_POST['get_csn_notification_bg_color'] ) ? $_POST['get_csn_notification_bg_color'] : "";
+	$get_csn_notification_text_color = isset( $_POST['get_csn_notification_text_color'] ) ? $_POST['get_csn_notification_text_color'] : "";
+	?>
+	<div class="carousel-inner">
+		<?php if( $get_csn_bg_option === "bg_color" ) { ?>
+			<div class="carousel-inner" style="background-color: <?php echo $get_csn_bg_color; ?> ;">
+		<?php } else { ?>
+			<div class="carousel-inner" style="background-image: url('<?php echo $get_csn_bg_image; ?>');background-size: 100%;background-repeat: no-repeat;">
+		<?php } ?>
+				<div class="logo_image">
+					<img src="<?php echo $get_csn_logo_image; ?>" alt="logo">
+				</div>
+				<div id="home" class= "logo text-center">
+					<h1><?php echo $get_csn_title; ?></h1>
+				</div>
+				<div class= "row timer-circle">
+					<div class= "main-text text-center">
+						<h2 class="top-text"><?php echo $get_csn_discription; ?></h2>
+					</div>
+				</div>
+				<?php
+				if( $get_csn_notification_option === "on" ) { ?>
+					<div class="notification_section">
+						<div class="input-group input-group-newsletter">
+							<input type="email" class="form-control" placeholder="Enter email..." aria-label="Enter email..." aria-describedby="basic-addon">
+							<div class="input-group-append">
+								<button class="btn btn-secondary" type="button" style="background-color: <?php echo $get_csn_notification_bg_color; ?>; color: <?php echo $get_csn_notification_text_color; ?>"><?php echo $get_csn_notification_btn_title; ?></button>
+							</div>
+						</div>
+					</div>
+				<?php } ?>
+			</div>
+	</div>
+	<?php
+	wp_die();
 }

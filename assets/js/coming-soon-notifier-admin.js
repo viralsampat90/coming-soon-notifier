@@ -70,7 +70,7 @@
 
 		$('body').on('click','#csn_preview',function(){
 			var get_csn_title = $('input[name=coming_soon_notifier_title]').val();
-			var get_csn_discription = $('textarea[name=coming_soon_notifier_discription]').text();
+			var get_csn_discription = $('textarea[name=coming_soon_notifier_discription]').val();
 			var get_csn_logo_image = $('input[name=coming_soon_logo_image]').val();
 			var get_csn_bg_option = $('input[name=coming_soon_notifier_bg_option]:checked').val();
 			var get_csn_bg_color = $('input[name=coming_soon_notifier_bg_color]').val();
@@ -82,6 +82,29 @@
 			var get_csn_notification_btn_title = $('input[name=coming_soon_notifier_notification_btn_title]').val();
 			var get_csn_notification_bg_color = $('input[name=coming_soon_notifier_notification_bg_color]').val();
 			var get_csn_notification_text_color = $('input[name=coming_soon_notifier_notification_text_color]').val();
+
+			var data = {
+				'action': 'csn_preview_action',
+				'get_csn_title': get_csn_title,
+				'get_csn_discription': get_csn_discription,
+				'get_csn_logo_image': get_csn_logo_image,
+				'get_csn_bg_option': get_csn_bg_option,
+				'get_csn_bg_color': get_csn_bg_color,
+				'get_csn_bg_image': get_csn_bg_image,
+				'get_csn_clock_option': get_csn_clock_option,
+				'get_csn_clock_date': get_csn_clock_date,
+				'get_csn_clock_theme': get_csn_clock_theme,
+				'get_csn_notification_option': get_csn_notification_option,
+				'get_csn_notification_btn_title': get_csn_notification_btn_title,
+				'get_csn_notification_bg_color': get_csn_notification_bg_color,
+				'get_csn_notification_text_color': get_csn_notification_text_color,
+			};
+
+			// We can also pass the url value separately from ajaxurl for front end AJAX implementations
+			jQuery.post(ajaxurl, data, function(response) {
+				$(".cs-notifier-preview_section").html(response);
+			});
+
 		});
 
 	});
