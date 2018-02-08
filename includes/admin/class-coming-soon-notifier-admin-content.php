@@ -36,14 +36,15 @@
 						<td>
 							<?php
 							$get_post_type = get_csn_options( 'post_type' );
+
 							// Get all post types array.
 							$post_types_array = return_post_types_names();
-							?>
+													?>
 							<select class="custom-post-types-selection" name="custom_post_types[]" multiple="multiple">
 								<?php
 								if( !empty( $post_types_array ) && sizeof( $post_types_array ) > 0 ) {
 									foreach ( $post_types_array as $post_types_array_value ) {
-										if( in_array( $post_types_array_value, $get_post_type)) { ?>
+										if( !empty( $get_post_type ) &&  in_array( $post_types_array_value, $get_post_type)) { ?>
 											<option selected value="<?php echo $post_types_array_value; ?>"><?php echo $post_types_array_value; ?></option>
 										<?php } else{	?>
 											<option value="<?php echo $post_types_array_value; ?>"><?php echo $post_types_array_value; ?></option>
